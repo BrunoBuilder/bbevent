@@ -2,6 +2,9 @@ package com.brunobuilder.bbevent.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_category")
 public class Category {
@@ -11,12 +14,19 @@ public class Category {
     private Integer id;
     private String description;
 
+    @OneToMany(mappedBy = "category")
+    private List<Activity> activities = new ArrayList<>();
+
     public Category() {
     }
 
     public Category(Integer id, String description) {
         this.id = id;
         this.description = description;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
     }
 
     public Integer getId() {
