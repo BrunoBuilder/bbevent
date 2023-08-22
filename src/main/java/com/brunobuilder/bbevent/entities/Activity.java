@@ -3,7 +3,9 @@ package com.brunobuilder.bbevent.entities;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_activity")
@@ -20,6 +22,9 @@ public class Activity {
 
     @OneToMany(mappedBy = "activity")
     private List<Block> blocks = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "activities")
+    private Set<Participant> participants = new HashSet<>();
 
     public Activity() {
     }
@@ -74,5 +79,9 @@ public class Activity {
 
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    public Set<Participant> getParticipants() {
+        return participants;
     }
 }
